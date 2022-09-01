@@ -4,19 +4,15 @@ package com.taskplanner.users.dto;
  * @author Laura Garcia
  */
 public class UserDto {
-//    private String id;
     private String name;
     private String email;
     private String lastName;
-//    private String createdAt;
 
-//    public String getId() {
-//        return id;
-//    }
-//
-//    public void setId(String id) {
-//        this.id = id;
-//    }
+    public UserDto(String name, String email, String lastName) {
+        this.name = name;
+        this.email = email;
+        this.lastName = lastName;
+    }
 
     public String getName() {
         return name;
@@ -42,11 +38,4 @@ public class UserDto {
         this.lastName = lastName;
     }
 
-//    public String getCreatedAt() {
-//        return createdAt;
-//    }
-//
-//    public void setCreatedAt(String createdAt) {
-//        this.createdAt = createdAt;
-//    }
 }
