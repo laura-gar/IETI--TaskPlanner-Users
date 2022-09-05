@@ -8,6 +8,8 @@ public class UserDto {
     private String email;
     private String lastName;
 
+    public UserDto(){};
+
     public UserDto(String name, String email, String lastName) {
         this.name = name;
         this.email = email;
@@ -37,5 +39,4 @@ public class UserDto {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
 }

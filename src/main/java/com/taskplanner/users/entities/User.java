@@ -1,22 +1,31 @@
 package com.taskplanner.users.entities;
 
-import java.time.LocalDate;
-import java.util.UUID;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.Instant;
+import java.util.Date;
 
 /**
  * @author Laura Garcia
  */
+@Document(collection = "users")
 public class User {
+    @Id
     private String id;
-    private String name;
-    private String email;
-    private String lastName;
-    private String createdAt;
 
+    private String name;
+
+    @Indexed(unique = true)
+    private String email;
+
+    private String lastName;
+
+    private Date createdAt;
 
     public User(){
-        this.id = UUID.randomUUID().toString().replace("-", "");
-        this.createdAt = LocalDate.now().toString();
+        this.createdAt = Date.from(Instant.now());
     }
 
     public User(String id, String name, String email) {
@@ -26,7 +35,7 @@ public class User {
         this.email = email;
     }
 
-    public User(String id, String name, String email, String lastName, String createdAt) {
+    public User(String id, String name, String email, String lastName, Date createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -34,7 +43,11 @@ public class User {
         this.createdAt = createdAt;
     }
 
-
+    public void update(User user){
+        name = user.getName();
+        lastName = user.getLastName();
+        email = user.getEmail();
+    }
 
     public String getId() {
         return id;
@@ -68,11 +81,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 }
