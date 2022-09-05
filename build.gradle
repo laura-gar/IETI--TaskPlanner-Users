@@ -17,6 +17,10 @@ dependencies {
 	implementation 'org.modelmapper:modelmapper:3.1.0'
 	implementation 'org.modelmapper:modelmapper-module-java8:1.2.2'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation 'javax.ws.rs:javax.ws.rs-api:2.0'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-crypto'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 }
