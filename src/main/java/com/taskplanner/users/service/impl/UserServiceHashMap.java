@@ -1,5 +1,6 @@
 package com.taskplanner.users.service.impl;
 
+import com.taskplanner.users.dto.UserDto;
 import com.taskplanner.users.entities.User;
 import com.taskplanner.users.service.UserService;
 
@@ -29,7 +30,7 @@ public class UserServiceHashMap implements UserService {
     @Override
     public List<User> getAll() {
         List<User> allUsers = new ArrayList<>();
-        for(String key : users.keySet()){
+        for (String key : users.keySet()) {
             allUsers.add(users.get(key));
         }
         return allUsers;
@@ -37,19 +38,19 @@ public class UserServiceHashMap implements UserService {
 
     @Override
     public boolean deleteById(String id) {
-        try{
+        try {
             users.remove(id);
             return true;
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             return false;
         }
     }
 
     @Override
-    public User update(User user, String userId) {
-        users.replace(userId, user);
-        return users.get(userId);
+    public User update(UserDto user, String userId) {
+        return null;
     }
+
 
     @Override
     public List<User> findUsersWithNameOrLastNameLike(String queryText) {
@@ -58,6 +59,11 @@ public class UserServiceHashMap implements UserService {
 
     @Override
     public List<User> findUsersCreatedAfter(Date startDate) {
+        return null;
+    }
+
+    @Override
+    public User findByEmail(String email) {
         return null;
     }
 }

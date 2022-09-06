@@ -1,5 +1,6 @@
 package com.taskplanner.users.service.impl;
 
+import com.taskplanner.users.dto.UserDto;
 import com.taskplanner.users.entities.User;
 import com.taskplanner.users.repository.UserRepository;
 import com.taskplanner.users.service.UserService;
@@ -47,7 +48,7 @@ public class UserServiceMongoDB implements UserService {
     }
 
     @Override
-    public User update(User user, String userId) {
+    public User update(UserDto user, String userId) {
         User userUpdate = findById(userId);
         userUpdate.update(user);
         return userRepository.save(userUpdate);
@@ -61,5 +62,10 @@ public class UserServiceMongoDB implements UserService {
     @Override
     public List<User> findUsersCreatedAfter(Date startDate) {
         return userRepository.findByCreatedAtAfter( startDate);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

@@ -1,6 +1,5 @@
 package com.taskplanner.users.controller;
 
-import com.mongodb.MongoWriteException;
 import com.taskplanner.users.dto.UserDto;
 import com.taskplanner.users.entities.User;
 import com.taskplanner.users.service.UserService;
@@ -75,11 +74,15 @@ public class UserController {
         return new ResponseEntity<>(usersDto, HttpStatus.OK);
     }
 
+    @GetMapping("/getByEmail/{email}")
+    public ResponseEntity<?> findByEmail(@PathVariable String email){
+        return new ResponseEntity<>(userService.findByEmail(email), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<UserDto> create( @RequestBody UserDto userDto ) {
         try{
-            ModelMapper modelMapper = new ModelMapper();
-            User user = modelMapper.map(userDto, User.class);
+            User user = new User(userDto);
             userService.create(user);
             return new ResponseEntity<>(userDto, HttpStatus.CREATED);
         }catch (Exception e){
@@ -91,9 +94,8 @@ public class UserController {
     public ResponseEntity<UserDto> update( @RequestBody UserDto user, @PathVariable String id ) {
         ModelMapper modelMapper = new ModelMapper();
         try{
-            User userMp = modelMapper.map(user, User.class);
-            UserDto userDto =  modelMapper.map(userService.update(userMp, id), UserDto.class);
-            return new ResponseEntity<>(userDto, HttpStatus.OK);
+            userService.update(user, id);
+            return new ResponseEntity<>(user, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -1,5 +1,6 @@
 package com.taskplanner.users.service;
 
+import com.taskplanner.users.dto.UserDto;
 import com.taskplanner.users.entities.User;
 
 import java.util.Date;
@@ -15,11 +16,13 @@ public interface UserService {
 
     List<User> getAll();
 
-    boolean deleteById( String id );
+    boolean deleteById(String id);
 
-    User update(User user, String userId );
+    User update(UserDto user, String userId);
 
     List<User> findUsersWithNameOrLastNameLike(String queryText);
 
     List<User> findUsersCreatedAfter(Date startDate);
+
+    User findByEmail(String email);
 }
