@@ -3,6 +3,7 @@ package com.taskplanner.users.controller;
 import com.taskplanner.users.dto.UserDto;
 import com.taskplanner.users.entities.User;
 import com.taskplanner.users.service.UserService;
+import com.taskplanner.users.utils.RoleEnum;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -83,9 +85,11 @@ public class UserController {
     public ResponseEntity<UserDto> create( @RequestBody UserDto userDto ) {
         try{
             User user = new User(userDto);
+            user.addRole(RoleEnum.ADMIN);
             userService.create(user);
             return new ResponseEntity<>(userDto, HttpStatus.CREATED);
         }catch (Exception e){
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
@@ -102,6 +106,7 @@ public class UserController {
     }
 
     @DeleteMapping( "/{id}" )
+    @RolesAllowed("ADMIN")
     public ResponseEntity<Boolean> delete( @PathVariable String id ) {
         try{
             userService.deleteById(id);

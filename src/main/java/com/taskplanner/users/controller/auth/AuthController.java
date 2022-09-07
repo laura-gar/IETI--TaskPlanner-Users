@@ -40,7 +40,6 @@ public class AuthController {
     @PostMapping
     public TokenDto login(@RequestBody LoginDto loginDto) {
         User user = userService.findByEmail(loginDto.getEmail());
-
         if (BCrypt.checkpw(loginDto.getPassword(), user.getPassword())) {
             return generateTokenDto(user);
         } else {

@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class User {
     private Date createdAt;
     private String lastName;
     private String password;
-    private List<RoleEnum> roles;
+    private List<RoleEnum> roles = new ArrayList<>();
 
     public User() {
         this.createdAt = Date.from(Instant.now());
@@ -103,5 +104,11 @@ public class User {
 
     public List<RoleEnum> getRoles() {
         return roles;
+    }
+
+    public void addRole(RoleEnum role){
+        if(!roles.contains(role)){
+            roles.add(role);
+        }
     }
 }
