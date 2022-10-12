@@ -1,35 +1,29 @@
 # IETI-TaskPlanner-Users
 
-User microservice created using Spring Boot
+User microservice created using Spring Boot with MongoDB as database and JWT as Token creator 
 
-## Test User Service 
+## Test User Service using token 
 
-### Crete User - POST 
+### Implement the Authentication Controller
+### Open endpoint 
 
-![](src/main/resources/static/img/lab01/01-postUser.png)
+![](src/main/resources/static/img/lab03/01-openEndpoint.png)
 
-### Get all Users - GET
+### Secured endpoint
 
-![](src/main/resources/static/img/lab01/02-getAllUsers.png)
+![](src/main/resources/static/img/lab03/02-securedEndpoint.png)
 
-### Get User by Id - GET
+### Implement JWT Request Filter
+#### Login user and get Token
 
-![](src/main/resources/static/img/lab01/03-getById.png)
+![](src/main/resources/static/img/lab03/03-loginToken.png)
 
-### Update user - PUT 
+#### Get all Users using Bearer Token 
 
-![](src/main/resources/static/img/lab01/04-updateUser.png)
+![](src/main/resources/static/img/lab03/04-usingBearerToken.png)
 
-#### Check user Update
+#### Get all Users without using Bearer Token
 
-![](src/main/resources/static/img/lab01/05-checkUpdate.png)
-
-### Delete User - DELETE
-
-![](src/main/resources/static/img/lab01/06-deleteUser.png)
-
-#### Check user delete
-
-![](src/main/resources/static/img/lab01/07-checkDelete.png)
+![](src/main/resources/static/img/lab03/05-withoutBearedToken.png)
 
 
