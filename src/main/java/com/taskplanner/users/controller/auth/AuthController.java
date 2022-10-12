@@ -59,6 +59,6 @@ public class AuthController {
         Calendar expirationDate = Calendar.getInstance();
         expirationDate.add(Calendar.MINUTE, TOKEN_DURATION_MINUTES);
         String token = generateToken(user, expirationDate.getTime());
-        return new TokenDto(token, expirationDate.getTime());
+        return new TokenDto(token, expirationDate.getTime(), user.getId());
     }
 }
